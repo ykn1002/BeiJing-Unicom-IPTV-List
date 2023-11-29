@@ -32,17 +32,28 @@ jobs:
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
           
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: "iptv_ChannelID.m3u"
+          target: "bj.m3u"
+          
+      - name: Commit and push the file
+        uses: maxgfr/github-commit-push-file@main
+        with:
+          commit_name: 'push bj.m3u'
+          
       - name: Replace string in file
         uses: MathieuSoysal/replace-string-in-file@v1.0.0
         with:
-          file: iptv_ChannelID.m3u
+          file: bj.m3u
           old-string: http:\/\/192.168.11.1:8888\/rtp\/
           new-string: rtp:\/\/
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
         with:
-          commit_name: 'Replace and push iptv_ChannelID.m3u'
+          commit_name: 'Replace bj.m3u'
           
       - name: Sync check
         if: failure()
