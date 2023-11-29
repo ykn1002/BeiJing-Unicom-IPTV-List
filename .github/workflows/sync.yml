@@ -33,10 +33,7 @@ jobs:
           test_mode: false
           
       - name: copy file
-        uses: canastro/copy-file-action@master
-        with:
-          source: "iptv_ChannelID.m3u"
-          target: "bj.m3u"
+        run: cp iptv_ChannelID.m3u bj.m3u
           
       - name: write file
         run: sed -i 's/http:\/\/192.168.1.1:8888\/rtp\//rtp:\/\//g' bj.m3u
@@ -44,7 +41,7 @@ jobs:
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
         with:
-          commit_name: 'Replace bj.m3u'
+          commit_name: 'replace bj.m3u'
           
       - name: Sync check
         if: failure()
