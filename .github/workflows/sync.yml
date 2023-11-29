@@ -32,20 +32,23 @@ jobs:
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
           
-      - uses: GuillaumeFalourd/copy-push-files@v1
+      - name: copy file
+        uses: canastro/copy-file-action@master
         with:
-          source_files: iptv_ChannelID.m3u iptv.m3u
-          remote_repository: https://github.com/ykn1002/BeiJing-Unicom-IPTV-List
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-          target_branch: master
-          target_dir: tv
+          source: "iptv_ChannelID.m3u"
+          target: "bj.m3u" 
           
       - name: Replace string in file
         uses: MathieuSoysal/replace-string-in-file@v1.0.0
         with:
-          file: tv/iptv_ChannelID.m3u
+          file: bj.m3u
           old-string: 192.168.11.1
           new-string: 192.168.1.1
+          
+      - name: Commit and push the file
+        uses: maxgfr/github-commit-push-file@main
+        with:
+          commit_name: 'Replace and push bj.m3u'
           
       - name: Sync check
         if: failure()
