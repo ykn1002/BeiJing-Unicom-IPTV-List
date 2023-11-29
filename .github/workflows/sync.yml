@@ -32,13 +32,11 @@ jobs:
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
           
-      - name: Copy file
-        uses: canastro/copy-action@0.0.2
+      - name: copy file
+        uses: canastro/copy-file-action@master
         with:
-          # Source file
-          source: iptv_ChannelID.m3u
-          # Target file
-          target: bj.m3u
+          source: "iptv.m3u"
+          target: "iptv-a.m3u"
           
       - name: Sync check
         if: failure()
