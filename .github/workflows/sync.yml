@@ -32,11 +32,13 @@ jobs:
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
           
-      - name: copy file
-        uses: canastro/copy-file-action@master
+      - uses: GuillaumeFalourd/copy-push-files@v1
         with:
-          source: "iptv.m3u"
-          target: "iptv-a.m3u"
+          source_files: cctv.m3u
+          remote_repository: https://github.com/ykn1002/BeiJing-Unicom-IPTV-List
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: master
+          target_dir: tv
           
       - name: Sync check
         if: failure()
