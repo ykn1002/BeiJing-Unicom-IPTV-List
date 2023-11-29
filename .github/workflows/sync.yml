@@ -34,7 +34,7 @@ jobs:
           
       - uses: GuillaumeFalourd/copy-push-files@v1
         with:
-          source_files: cctv.m3u
+          source_files: iptv.m3u
           remote_repository: https://github.com/ykn1002/BeiJing-Unicom-IPTV-List
           access_token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: master
