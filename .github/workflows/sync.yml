@@ -38,12 +38,8 @@ jobs:
           source: "iptv_ChannelID.m3u"
           target: "bj.m3u"
           
-      - name: replace
-        uses: Nambers/ReplaceStringInFile@v1
-        with:
-          path: ${{ github.workspace }}/bj.m3u
-          oldString: http:\/\/192.168.11.1:8888\/rtp\/
-          newString: rtp:\/\/
+      - name: write file
+        run: sed -i 's/http:\/\/192.168.1.1:8888\/rtp\//rtp:\/\//g' bj.m3u
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
