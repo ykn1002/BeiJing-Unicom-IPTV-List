@@ -32,16 +32,10 @@ jobs:
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
           
-      - name: copy file
-        uses: canastro/copy-file-action@master
-        with:
-          source: "iptv_ChannelID.m3u"
-          target: "bj.m3u" 
-          
       - name: Replace string in file
         uses: MathieuSoysal/replace-string-in-file@v1.0.0
         with:
-          file: bj.m3u
+          file: iptv_ChannelID.m3u
           old-string: 192.168.11.1
           new-string: 192.168.1.1
           
