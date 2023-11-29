@@ -38,20 +38,12 @@ jobs:
           source: "iptv_ChannelID.m3u"
           target: "bj.m3u"
           
-      - name: Commit and push the file
-        uses: maxgfr/github-commit-push-file@main
+      - name: replace
+        uses: Nambers/ReplaceStringInFile@v1
         with:
-          commit_name: 'push bj.m3u'
-          
-      - name: Checkout target repo
-        uses: actions/checkout@v3
-          
-      - name: Replace string in file
-        uses: MathieuSoysal/replace-string-in-file@v1.0.0
-        with:
-          file: bj.m3u
-          old-string: http:\/\/192.168.11.1:8888\/rtp\/
-          new-string: rtp:\/\/
+          path: ${{ github.workspace }}/bj.m3u
+          oldString: http:\/\/192.168.11.1:8888\/rtp\/
+          newString: rtp:\/\/
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
