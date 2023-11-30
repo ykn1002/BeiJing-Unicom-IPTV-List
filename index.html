@@ -53,7 +53,15 @@
         $copyUrl.attr("type", "hidden");
         showMessage('复制成功');
     }
-
+    function copy2(id){
+        var prefix = "https://iptv.kwgpt.cc/";
+        const copyText = prefix + id; 
+        navigator.clipboard.writeText(copyText).then(() => { 
+          showMessage('复制成功'); 
+        }).catch((err) => { 
+          showMessage('复制失败：', err); 
+        }); 
+    }
 
     window.showMessage = function( $msg, $time, callback ){
     $time = $time === 0 ? 0 : ($time || 1000);
