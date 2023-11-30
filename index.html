@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link rel="shortcut icon" href="favicon.ico">
     <script src="js/jquery.min.js"></script>
     <style>
@@ -10,23 +10,68 @@
             cursor: pointer;
             color: blue;
         }
+        #toastTip {
+            display: none;
+            position: fixed;
+            top: 46%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.3rem .5rem;
+            min-width: 18%;
+            max-width: 80%;  /* 这里最大宽度可能不生效，内容过多展示宽度50%会折行 */
+            line-height: 1.3rem;
+            font-size: 1rem;
+            text-align: center;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, .7);
+            border-radius: 0.1rem;
+            z-index: 100;
+        }
+
     </style>
 </head>
 <body>
     <input type="hidden" id="copyUrl"/>
-    <h1><span class="link" onclick="copy('bj.m3u')">bj.m3u</span></h1>
-    <h1><span class="link" onclick="copy('test_channels.txt')">test_channels.txt</span></h1>
+    <h1>直播源：</h1>
+    <h2><span class="link" onclick="copy('bj.m3u')">bj.m3u</span></h2>
+    <h2><span class="link" onclick="copy('test_channels.txt')">test_channels.txt</span></h2>
+    <h1>链接：</h1>
+    <h2><a href="https://github.com/Ftindy/IPTV-URL">IPTV-URL</a></h2>
+    <h2><a href="https://epg.pw/test_channel_page.html?lang=zh-hant">epg.pw</a></h2>
+    <h2><a href="https://github.com/qwerttvv/Beijing-IPTV">Beijing-IPTV</a></h2>
+    <h2><a href="https://github.com/islercn/BeiJing-Unicom-IPTV-List">BeiJing-Unicom-IPTV-List</a></h2>
 </div>
 </body>
 <script>
     function copy(id){
-	var prefix = "https://iptv.kwgpt.cc/";
-	var $copyUrl = $("#copyUrl");
-	$copyUrl.val(prefix + id);
-	$copyUrl.attr("type", "text");
-	$copyUrl.select();
-	document.execCommand("Copy");
-	$copyUrl.attr("type", "hidden");
+        var prefix = "https://iptv.kwgpt.cc/";
+        var $copyUrl = $("#copyUrl");
+        $copyUrl.val(prefix + id);
+        $copyUrl.attr("type", "text");
+        $copyUrl.select();
+        document.execCommand("Copy");
+        $copyUrl.attr("type", "hidden");
+        showMessage('复制成功');
+    }
+
+
+    window.showMessage = function( $msg, $time, callback ){
+    $time = $time === 0 ? 0 : ($time || 1000);
+    var oDiv = document.createElement("div");
+    oDiv.setAttribute("id", "toastTip");
+    //var oBody = document.getElementsByClassName('wrapper')[0];
+    var oBody = document.getElementsByTagName('body')[0];
+    oBody.append(oDiv);
+    $('#toastTip').text( $msg );
+    $('#toastTip').fadeIn();
+    setTimeout(function() {
+        $('#toastTip').fadeOut(function(){
+            $('#toastTip').remove();
+        });
+        if (callback && (typeof callback == 'function')) {
+          callback();
+        }
+    }, $time);
 }
 </script>
 </html> 
