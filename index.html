@@ -4,10 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="favicon.ico">
+    <script src="js/jquery.min.js"></script>
+    <style>
+        .link{
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
 </head>
 <body>
-    <h1><a href="https://iptv.kwgpt.cc/bj.m3u">bj.m3u</a></h1>
-    <h1><a href="https://iptv.kwgpt.cc/">test_channels.txt</a></h1>
+    <input type="hidden" id="copyUrl"/>
+    <h1><span class="link" onclick="copy('bj.m3u')">bj.m3u</span></h1>
+    <h1><span class="link" onclick="copy('test_channels.txt')">test_channels.txt</span></h1>
 </div>
 </body>
+<script>
+    function copy(id){
+	var prefix = "https://iptv.kwgpt.cc/";
+	var $copyUrl = $("#copyUrl");
+	$copyUrl.val(prefix + id);
+	$copyUrl.attr("type", "text");
+	$copyUrl.select();
+	document.execCommand("Copy");
+	$copyUrl.attr("type", "hidden");
+}
+</script>
 </html> 
