@@ -37,6 +37,7 @@ jobs:
           
       - name: write file
         run: sed -i 's/http:\/\/192.168.11.1:8888\/rtp\//rtp:\/\//g' bj.m3u
+             echo echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> bj.m3u
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
