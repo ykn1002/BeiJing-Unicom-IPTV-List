@@ -32,20 +32,26 @@ jobs:
           # Set test_mode true to run tests instead of the true action!!
           test_mode: false
           
-      - name: copy file
+      - name: copy iptv_ChannelID.m3u
         run: cp iptv_ChannelID.m3u bj.m3u
           
       - name: replace file
         run: sed -i 's/http:\/\/192.168.11.1:8888\/rtp\//rtp:\/\//g' bj.m3u
              
-      - name: write file
+      - name: write bj.m3u
         run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> bj.m3u
 
-      - name: delete file
-        run: rm -rf test_channels.txt
-      
-      - name: download file
+      - name: download test_channels.txt
         run: wget --no-check-certificate https://epg.pw/test_channels.txt
+
+      - name: copy test_channels.txt
+        run: cp test_channels.txt channels.txt  
+
+      - name: delete test_channels.txt
+        run: rm -rf test_channels.txt
+
+      - name: write file
+        run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> bj.m3u
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
