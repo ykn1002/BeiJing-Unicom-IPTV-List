@@ -36,7 +36,8 @@
     <h2><span class="link" onclick="copy2('bj.m3u')">BeiJing-Unicom-IPTV</span></h2>
     <h2><span class="link" onclick="copy2('test_channels_china.txt')">CHINA-EGP</span></h2>
     <h1>接口：</h1>
-    <h2><span class="link" onclick="copy2('thgyck.json')">挺好分享</span></h2>
+    <h2><span class="link" onclick="copy3('https\://codeberg.org/ztha/tvbox/raw/branch/main/thgyck.json')">挺好分享</span></h2>
+    <h2><span class="link" onclick="copy2('thgyck.json')">挺好分享(本地)</span></h2>
     <h1>链接：</h1>
     <h2><a href="https://github.com/Ftindy/IPTV-URL">IPTV-URL</a></h2>
     <h2><a href="https://epg.pw/test_channel_page.html?lang=zh-hant">epg.pw</a></h2>
@@ -64,6 +65,17 @@
           showMessage('复制失败：', err); 
         }); 
     }
+
+    function copy3(url){
+        const copyText = url; 
+        navigator.clipboard.writeText(copyText).then(() => { 
+          showMessage('复制成功'); 
+        }).catch((err) => { 
+          showMessage('复制失败：', err); 
+        }); 
+    }
+
+    
 
     window.showMessage = function( $msg, $time, callback ){
     $time = $time === 0 ? 0 : ($time || 1000);
