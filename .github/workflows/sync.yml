@@ -40,11 +40,17 @@ jobs:
              
       - name: write file
         run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> bj.m3u
+
+      - name: download file
+        run: wget --no-check-certificate https://epg.pw/test_channels_china.txt
+
+      - name: write file
+        run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> test_channels_china.txt
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
         with:
-          commit_name: 'replace bj.m3u'
+          commit_name: 'Sync file'
           
       - name: Sync check
         if: failure()
