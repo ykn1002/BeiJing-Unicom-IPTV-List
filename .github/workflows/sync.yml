@@ -42,13 +42,13 @@ jobs:
         run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> bj.m3u
 
       - name: delete file
-        run: rm -rf test_channels_china.txt
+        run: rm -rf test_channels.txt
       
       - name: download file
-        run: wget --no-check-certificate https://epg.pw/test_channels_china.txt
+        run: wget --no-check-certificate https://epg.pw/test_channels.txt
 
       - name: write file
-        run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> test_channels_china.txt
+        run: echo "#"$(date +%Y/%m/%d%n%H:%M:%S) >> test_channels.txt
           
       - name: Commit and push the file
         uses: maxgfr/github-commit-push-file@main
