@@ -58,8 +58,9 @@
         showMessage('复制成功');
     }
     function copy2(id){
-        var prefix = "https://iptv.kwgpt.cc/";
-        const copyText = prefix + id; 
+        //获取当前页面url
+        var url = window.location.href;
+        const copyText = url + "/" + id; 
         navigator.clipboard.writeText(copyText).then(() => { 
           showMessage('复制成功'); 
         }).catch((err) => { 
